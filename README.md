@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<br />
+<p align="center">
+  <a href="https://sofiaferreira77.github.io/beer-collection-case/list">
+    <img src="https://ibb.co/nkcNjYn" alt="Beers List Page" >
+  </a>
+  <a href="https://sofiaferreira77.github.io/beer-collection-case/list">
+    <img src="https://ibb.co/dmjvFXv" alt="Beer Detail Page" >
+  </a>
+</p>
 
-## Getting Started
+# Frontend Case: Beer Collection
 
-First, run the development server:
+## Presentation
+This project is a collection of some exercices with react, nextjs and tailwind for learning purpose.
+It is a web-app to track of the customers beer collection.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Built with and Using
+- [x] [Nextjs](https://nextjs.org/)
+- [x] [React](https://react.dev/)
+- [x] [Tailwind](https://tailwindcss.com/) - A utility-first CSS framework that allows for rapid custom designs by composing utility classes.
+- [x] Localstorage - to save entries on the device
+- [x] [PunkAPI](https://punkapi.com/documentation/v2)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## App features
+- [x] Overview of bottles in the collection - grid layout
+- [x] Listing of all bottles - grid layout
+- [x] Sorting in list view (Sort by abv, ibu, srm, ph).
+- [x] Possibility to add/remove bottles from collection
+- [x] Detailed view of bottle
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Architecture
+Clean architecture
 
-## Learn More
+| Path |  Alias | Description  |
+|---|---|---|
+| `src/app/*`  | -  | Next.js - App Router |
+| `src/components/layout`  | `@components/layout/*`  | Components used to organize the application's layout  |
+| `src/components/common`  | `@components/common/*`  | Global shared components (header and footer)  |
+| `src/components/ui`  | `@components/ui/*`  | More Complex ui related components (heading, icons, pagination, preloader)  |
+| `src/components/*`  | `@components/*`  | Reusable components to fill pages (BeerDetail, BeerItem, BeerList, BeerRefinements) |
+| `src/styles`  | `@styles/*`  | Global styles  |
+| `src/data/context/*`  | `@data/context/*`  | Context api to share state through the component  |
+| `src/data/hooks/*`  | `@data/hooks/*`  | Custom hooks  |
+| `src/usecases/*`  | `@usecases/*`  | Use case acts as an intermediary between *views (components/pages) / context* and the *repositories*  |
+| `src/repositories/*`  | `@repositories/*`  | Repositories - data access and storage logic. The repository pattern abstracts the data source (e.g., API, database) from the rest of your application, making it easier to switch data sources if needed. |
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Important package.json scripts
+- `dev` starts the development server
+- `build` compiles the application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+# Next Steps
+The concepts of Clean Architecture, SOLID and Functional Programming are reviewd. 
+Next steps:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [ ] App Router (Dynamic Routes) / Server Side Rendering / Static Site Generation
+- [ ] Internationalization
+- [ ] Transition animations between pages and states (using [framer motion](https://www.framer.com/motion/use-in-view/))
+- [ ] API with another methods (firebase ie.)
+- [ ] State managment with Redux (only used contextApi)
