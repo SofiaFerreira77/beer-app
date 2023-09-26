@@ -8,7 +8,7 @@
   </a>
 </p>
 
-# Frontend Case: Beer Collection
+# Frontend Case: App Router Approach
 
 ## Presentation
 This project is a collection of some exercices with react, nextjs and tailwind for learning purpose.
