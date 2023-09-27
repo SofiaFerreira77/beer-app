@@ -38,6 +38,7 @@ export default function BeerItem(props) {
             className="max-h-[100%]"
             width={455}
             height={330}
+            style={{ width: "auto" }}
             priority
           />
         </div>

@@ -18,8 +18,9 @@ export default function BeerDetail({ bottle }) {
           src={image_url}
           alt={tagline}
           className="max-h-[500px] h-auto"
-          width={455}
+          width={600}
           height={330}
+          style={{ width: "auto" }}
           priority
         />
       </div>
