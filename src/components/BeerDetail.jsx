@@ -13,7 +13,7 @@ export default function BeerDetail({ bottle }) {
 
       <div className={`flex justify-center
                         md:sticky top-28 mb-10 p-10
-                      bg-white drop-shadow-lg rounded-xl overflow-hidden`}>
+                      overflow-hidden`}>
         <Image
           src={image_url}
           alt={tagline}

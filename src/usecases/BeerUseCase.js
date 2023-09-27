@@ -46,12 +46,9 @@ class BeerUseCase {
   async getBeerCollection() {
     const allBeers = await this.beerRepository.getAllBeers();
     const savedCollection = await this.userRepository.getBeerCollection();
+    
     let filteredCollection;
-
-    if (savedCollection) {
-      filteredCollection = allBeers.filter((value) => savedCollection.includes(value.id));
-    }
-
+    savedCollection ? filteredCollection = allBeers.filter((value) => savedCollection.includes(value.id)) : [];
     return filteredCollection;
   }
 
@@ -60,19 +57,21 @@ class BeerUseCase {
   }
 
   async addToCollection(beerId) {
-    let collection = JSON.parse(localStorage.getItem('collection'));
+    const savedCollection = localStorage.getItem('collection');
+    const collection = savedCollection ? JSON.parse(savedCollection) : [];
     collection.push(beerId);
     this.userRepository.addToCollection(collection);
   }
 
   async removeFromCollection(beerId) {
-    let collection = Object.values(JSON.parse(localStorage.getItem('collection')));
-    let filteredCollection = collection.filter((item) => item !== beerId);
+    const savedCollection = localStorage.getItem('collection');
+    const collection = savedCollection ? Object.values(JSON.parse(savedCollection)) : [];
+    const filteredCollection = collection.filter((item) => item !== beerId);
     this.userRepository.removeFromCollection(filteredCollection);
   }
 
   async updateBeerRating(beer, rating) {
-    let ratedBeers = JSON.parse(localStorage.getItem('ratedBeers'));
+    const ratedBeers = JSON.parse(localStorage.getItem('ratedBeers'));
     ratedBeers.push({ id: beerId, rating: rating});
     this.userRepository.updateBeerRating(ratedBeers);
   }

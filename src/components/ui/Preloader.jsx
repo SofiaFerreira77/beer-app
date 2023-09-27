@@ -9,7 +9,6 @@ export const Preloader = () => {
             <Image
                 src="/preloader.gif"
                 alt="Loading..."
-                className="dark:invert"
                 width={200}
                 height={200}
                 priority

@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import BeerUseCase from "../../usecases/BeerUseCase";
 import BeerRepository from "../../repositories/BeerRepository"
 import UserRepository from "../../repositories/UserRepository"
@@ -20,27 +20,35 @@ export function BeerProvider({ children }) {
   const [collectionBeers, setCollectionBeers] = useState([]);
   const [filters, setFilters] = useState(null);
   const [orderBy, setOrderBy] = useState({ type: 'abv' });
-
-
-  const toggleFavorite = async (beerId, isFavorite) => {
-    if (isFavorite) {
+  
+  const toggleFavorite = useCallback(
+    async (beerId, isFavorite) => {
       try {
-        await useCase.removeFromCollection(beerId);
-        collectionBeers.data.filter((item) => item !== beerId);
-        isFavorite = false;
+        if (isFavorite) {
+          await useCase.removeFromCollection(beerId);
+        } else {
+          await useCase.addToCollection(beerId);
+        }
+
+        const updatedCollectionData = isFavorite
+          ? collectionBeers.data.filter((item) => item !== beerId)
+          : [...collectionBeers.data, beerId];
+  
+        setCollectionBeers({
+          data: updatedCollectionData,
+          loading: false,
+        });
       } catch (error) {
         console.error('Error toggling favorite:', error);
       }
-    } else {
-      try {
-        await useCase.addToCollection(beerId);
-        collectionBeers.data.push(beerId);
-        isFavorite = true;
-      } catch (error) {
-        console.error('Error toggling favorite:', error);
-      }
-    }
-  };
+    },
+    [collectionBeers.data, useCase]
+  );
+  
+/*   useEffect(() => {
+  }, [beerId, toggleFavorite]); */
+  
+
 
   const value = {
     allBeers,
@@ -58,18 +66,22 @@ export function BeerProvider({ children }) {
     async function fetchData() {
       try {
         const allBeersData = await useCase.getAllBeers(filters, orderBy);
-        setAllBeers({
+        setAllBeers((prevAllBeers) => ({
+          ...prevAllBeers,
           data: allBeersData,
           loading: false
-        })
+        }));
       } catch (error) {
         console.error('All Beers - Error fetching beers:', error);
-        allBeers.loading = false
+        setAllBeers((prevAllBeers) => ({
+          ...prevAllBeers,
+          loading: false
+        }));
       }
     }
 
     fetchData();
-  }, [allBeers, filters, orderBy]);
+  }, [filters, orderBy, useCase]);
 
 
   useEffect(() => {

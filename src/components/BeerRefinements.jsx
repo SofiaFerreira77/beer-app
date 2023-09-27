@@ -6,7 +6,6 @@ import { Listbox, Transition } from '@headlessui/react'
 export default function BeerRefinements(props) {
 
   const { filters, setFilters, orderBy, setOrderBy } = useBeerContext();
-
   const filterByOptions = []
 
   const sortByOptions = [
