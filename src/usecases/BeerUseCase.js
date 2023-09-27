@@ -43,6 +43,11 @@ class BeerUseCase {
     return filteredBeers;
   }
 
+  async getSomeBeers(quantity) {
+    const getSomeBeers = await this.beerRepository.getSomeBeers(quantity);
+    return getSomeBeers;
+  }
+
   async getBeerCollection() {
     const allBeers = await this.beerRepository.getAllBeers();
     const savedCollection = await this.userRepository.getBeerCollection();

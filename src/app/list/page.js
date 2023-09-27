@@ -24,7 +24,11 @@ export default function Home() {
 
       <BeerRefinements />
 
-      <BeerList beers={allBeers.data} loading={allBeers.loading} showCollectionOnly={false} />
+      {allBeers.data && allBeers.data.length > 0 ?
+        (<BeerList beers={allBeers.data} loading={allBeers.loading} showCollectionOnly={false} />)
+        :
+        (<p>There is no beers</p>)
+      }
     </>
   )
 }

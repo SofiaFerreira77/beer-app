@@ -15,6 +15,20 @@ export default class BeerRepository {
     }
   }
 
+  async getSomeBeers(quantity) {
+    try {
+      const response = await fetch(`${BASE_URL}/beers?per_page=${quantity}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching beers:', error);
+      throw error;
+    }
+  }
+
   async getBeerById(beerId) {
     try {
       const response = await fetch(`${BASE_URL}/beers/${beerId}`);

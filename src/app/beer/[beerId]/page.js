@@ -6,6 +6,8 @@ import Link from "next/link";
 
 import BeerUseCase from "@/usecases/BeerUseCase";
 import BeerRepository from "@/repositories/BeerRepository"
+import { useBeerContext } from "@/data/context/BeerContext";
+
 import BeerDetail from "@/components/BeerDetail";
 import { Preloader } from "@/components/ui/Preloader";
 import Heading from "@/components/ui/Heading";
@@ -21,7 +23,7 @@ export default function Detail() {
     loading: true
   })
 
-  const details = response.data;
+  const {data, loading} = response;
 
   useEffect(() => {
     async function fetchData() {
@@ -44,13 +46,36 @@ export default function Detail() {
   }, [beerId]);
 
 
+  const [recomendations, setRecommendations] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const beerRepository = new BeerRepository();
+      const useCase = new BeerUseCase(beerRepository);
+      const data = await useCase.getSomeBeers(8);
+
+      try {
+        setRecommendations({
+          data: data,
+          loading: false
+        })
+      } catch (error) {
+        console.error('Error fetching beers:', error);
+        setRecommendations({ loading: false })
+      }
+    }
+
+    fetchData();
+  }, []);
+
+
   return (
     <>
       <div className="container mx-auto relative flex justify-start items-start gap-3 text-xs my-5">
-        {!response.loading ? 
-            details.map((bottleDetail, index) => <BeerDetail key={index} bottle={bottleDetail} />)
-            :
-            <Preloader/>
+        {!loading && data.length > 0 ?
+          data.map((bottleDetail, index) => <BeerDetail key={index} bottle={bottleDetail} />)
+          :
+          <Preloader />
         }
       </div>
 
@@ -64,8 +89,13 @@ export default function Detail() {
           hover:bg-gray hover:text-white rounded-xl`}>Show All {IconRight}</Link>
       </div>
 
-      {/* <Heading title="Other beers" />
-      <BeerList beers={allBeers.data} loading={allBeers.loading} showCollectionOnly={false} /> */}
+      <Heading title="Other beers" />
+
+      {recomendations.data && recomendations.data.length > 0 ?
+        (<BeerList beers={recomendations.data} loading={recomendations.loading} showCollectionOnly={false} />)
+        :
+        (<p>There is no beers</p>)
+      }
     </>
   )
 }
