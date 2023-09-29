@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { IconCode } from "../ui/Icons";
 
-export default function Footer(props) {
-    const { developer } = props;
-
+export default function Footer({ developer }) {
     return (
         <footer className="fixed bottom-0 z-0 w-full h-60 
                             flex flex-col items-center justify-center

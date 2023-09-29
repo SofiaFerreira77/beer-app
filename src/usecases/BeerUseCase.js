@@ -26,18 +26,12 @@ class BeerUseCase {
     switch (sortBy.type) {
       case "abv":
         return filteredBeers.sort((a, b) => a.abv - b.abv);
-
       case "ibu":
         return filteredBeers.sort((a, b) => a.ibu - b.ibu);
-
       case "srm":
         return filteredBeers.sort((a, b) => a.srm - b.srm);
-
       case "ph":
         return filteredBeers.sort((a, b) => a.ph - b.ph);
-
-      default:
-        break;
     }
 
     return filteredBeers;

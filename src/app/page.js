@@ -21,7 +21,7 @@ export default function Home() {
         {IconRight}
       </Link>
       {collectionBeers.data && collectionBeers.data.length > 0 ?
-        (<BeerList beers={collectionBeers.data} loading={collectionBeers.loading} showCollectionOnly={true} />)
+        (<BeerList beers={collectionBeers.data} loading={collectionBeers.loading} showCollectionOnly />)
         :
         (<p>There is no beers</p>)
       }

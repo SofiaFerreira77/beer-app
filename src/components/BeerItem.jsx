@@ -3,14 +3,13 @@ import Link from "next/link";
 import { IconStaredSolid, IconStared } from "./ui/Icons"
 import Image from 'next/image';
 
-export default function BeerItem(props) {
+export default function BeerItem({beer, showCollectionOnly}) {
   const { toggleFavorite } = useBeerContext();
-  const { beer } = props;
 
   return (
     <div className="relative" key={beer.id}>
 
-      {!props.showCollectionOnly ?
+      {!showCollectionOnly ?
         <button id={beer.id}
           onClick={() => toggleFavorite(beer.id, beer.isFavorite)}
           className={`absolute z-20 right-2 top-2 p-2 text-2xl bg-white_2 text-gray_2 rounded-full
