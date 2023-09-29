@@ -45,11 +45,6 @@ export function BeerProvider({ children }) {
     [collectionBeers.data, useCase]
   );
   
-/*   useEffect(() => {
-  }, [beerId, toggleFavorite]); */
-  
-
-
   const value = {
     allBeers,
     setAllBeers,

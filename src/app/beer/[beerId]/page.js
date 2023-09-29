@@ -3,11 +3,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'next/navigation'
 import Link from "next/link";
-
 import BeerUseCase from "@/usecases/BeerUseCase";
 import BeerRepository from "@/repositories/BeerRepository"
-import { useBeerContext } from "@/data/context/BeerContext";
-
 import BeerDetail from "@/components/BeerDetail";
 import { Preloader } from "@/components/ui/Preloader";
 import Heading from "@/components/ui/Heading";
@@ -27,11 +24,11 @@ export default function Detail() {
 
   useEffect(() => {
     async function fetchData() {
-      const beerRepository = new BeerRepository();
-      const useCase = new BeerUseCase(beerRepository);
-      const data = await useCase.getBeerById(beerId);
-
       try {
+        const beerRepository = new BeerRepository();
+        const useCase = new BeerUseCase(beerRepository);
+        const data = await useCase.getBeerById(beerId);
+
         setResponse({
           data: data,
           loading: false
@@ -50,11 +47,11 @@ export default function Detail() {
 
   useEffect(() => {
     async function fetchData() {
-      const beerRepository = new BeerRepository();
-      const useCase = new BeerUseCase(beerRepository);
-      const data = await useCase.getSomeBeers(8);
-
       try {
+        const beerRepository = new BeerRepository();
+        const useCase = new BeerUseCase(beerRepository);
+        const data = await useCase.getSomeBeers(4);
+
         setRecommendations({
           data: data,
           loading: false

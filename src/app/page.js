@@ -1,7 +1,7 @@
 "use client"
 
-import { useBeerContext } from '@/data/context/BeerContext'
 import Link from 'next/link'
+import { useBeerContext } from '@/data/context/BeerContext'
 import BeerList from '@/components/BeerList'
 import Heading from '@/components/ui/Heading'
 import { IconRight } from "@/components/ui/Icons"

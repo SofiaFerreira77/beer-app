@@ -1,7 +1,7 @@
-import { useBeerContext } from '../data/context/BeerContext';
 import Link from "next/link";
-import { IconStaredSolid, IconStared } from "./ui/Icons"
 import Image from 'next/image';
+import { useBeerContext } from '../data/context/BeerContext';
+import { IconStaredSolid, IconStared } from "./ui/Icons"
 
 export default function BeerItem({beer, showCollectionOnly}) {
   const { toggleFavorite } = useBeerContext();

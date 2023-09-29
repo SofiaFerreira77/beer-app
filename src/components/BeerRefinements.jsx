@@ -1,7 +1,7 @@
-import { useBeerContext } from '../data/context/BeerContext';
 import { Fragment } from "react"
-import { IconFilter, IconSort } from "./ui/Icons"
 import { Listbox, Transition } from '@headlessui/react'
+import { useBeerContext } from '../data/context/BeerContext';
+import { IconFilter, IconSort } from "./ui/Icons"
 
 export default function BeerRefinements(props) {
 
@@ -36,9 +36,9 @@ export default function BeerRefinements(props) {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute right-0 left-0 z-20 flex flex-col bg-white drop-shadow-md rounded-lg text-right">
-              {filterByOptions.map((item, index) => (
+              {filterByOptions.map((item) => (
                 <Listbox.Option
-                  key={index}
+                  key={item.id}
                   className={({ active }) =>
                     `text-sm relative cursor-pointer select-none py-1 px-5 hover:bg-white_2 
                               ${active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'}`
@@ -67,9 +67,9 @@ export default function BeerRefinements(props) {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute right-0 left-0 z-20 flex flex-col bg-white drop-shadow-md rounded-lg text-center">
-              {sortByOptions.map((item, index) => (
+              {sortByOptions.map((item) => (
                 <Listbox.Option
-                  key={index}
+                  key={item.id}
                   className={({ active }) =>
                     `text-xs relative cursor-pointer select-none py-2 px-5 hover:bg-white_2 
                             ${active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'}`

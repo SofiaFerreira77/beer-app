@@ -1,8 +1,8 @@
+import { Unbounded } from 'next/font/google'
+import { BeerProvider } from '@/data/context/BeerContext'
 import Header from '@/components/common/Header'
 import Footer from '@/components/common/Footer'
 import './globals.css'
-import { Unbounded } from 'next/font/google'
-import { BeerProvider } from '@/data/context/BeerContext'
 
 const unbounded = Unbounded({
   weight: ['300', '600', '900'],

@@ -117,8 +117,8 @@ export default function BeerDetail({ bottle }) {
               <td>
                 <table className="w-full">
                   <tbody>
-                    {ingredients.malt.map((key, id) =>
-                      <tr key={id}>
+                    {ingredients.malt.map((key, index) =>
+                      <tr key={index}>
                         <td>{key.name}</td>
                         <td>{key.amount.value} {key.amount.unit}</td>
                       </tr>
@@ -132,8 +132,8 @@ export default function BeerDetail({ bottle }) {
               <td>
                 <table className="w-full">
                   <tbody>
-                    {ingredients.hops.map((key, id) =>
-                      <tr key={id}>
+                    {ingredients.hops.map((key, index) =>
+                      <tr key={index}>
                         <td>{key.name}</td>
                         <td>{key.amount.value} {key.amount.unit}</td>
                       </tr>
@@ -151,7 +151,7 @@ export default function BeerDetail({ bottle }) {
 
         <h2 className="font-bold text-lg">Food</h2>
         <ul>
-          {food_pairing.map((food, id) => <li key={id}>- {food}</li>)}
+          {food_pairing.map((food, index) => <li key={index}>- {food}</li>)}
         </ul>
 
         <p>{brewers_tips}</p>
